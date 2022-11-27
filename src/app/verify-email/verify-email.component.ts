@@ -8,6 +8,8 @@ import { AuthService } from '../services/authService.service';
 })
 export class VerifyEmailComponent implements OnInit {
 
+  currUser: any;
+
   constructor( public authservice: AuthService) { }
 
   ngOnInit(): void {

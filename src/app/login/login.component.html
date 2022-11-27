@@ -16,7 +16,7 @@
         </mat-form-field>
       </div>
       <div class="mt-top">
-        <button mat-raised-button color="primary" [disabled]="formValid(loginForm)" (click)="authservice.login(email.value, password.value)" mat-button >Sign In</button>
+        <button  mat-raised-button color="primary" [disabled]="formValid(loginForm)" (click)="authservice.login(email.value, password.value)" mat-button >Sign In</button>
       </div>
       <div class="acc">
         <p>You don't have an account? <a routerLinkActive="active" [routerLink]="['/register']">Sign Up</a></p>

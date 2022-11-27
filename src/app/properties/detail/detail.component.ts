@@ -76,7 +76,7 @@ export class DetailComponent implements OnInit {
   return response == userId }
 
    likeProperty(property: Property){
-    this.dataService.likeProperty(this.route.snapshot.params['id'], property)
+    this.dataService.likeProperty(this.route.snapshot.params['id'], property);
    }
  
 }
