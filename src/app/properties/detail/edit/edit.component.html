@@ -1,0 +1,83 @@
+<!-- 
+        <main>
+            <form class="theater-form" [formGroup]="editForm">
+                <h1>Edit Property</h1>
+                <div>
+                    <label for="title">Property name:</label>
+                    <input matInput type="text" placeholder="Property name" name="name" value="{{property.name}}">
+                    <mat-error *ngIf="editForm.get('name').hasError('required')">Field is required!</mat-error>
+                    <mat-error *ngIf="editForm.get('name').hasError('pattern')">Only English letter allowed!</mat-error>
+                    <mat-error *ngIf="editForm.get('name').hasError('maxLength')">Maximum 20 characters allowed!</mat-error>
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea placeholder="Description" name="description">{{property.description}}</textarea>
+                    <mat-error *ngIf="editForm.get('description').hasError('required')">Field is required!</mat-error>
+                    <mat-error *ngIf="editForm.get('description').hasError('maxLength')">Maximum 200 characters allowed!</mat-error>
+                </div>
+                <div>
+                    <label for="imageUrl">Image url:</label>
+                    <input matInput type="text" placeholder="Image Url" name="imageUrl" value="{{property.imageUrl}}">
+                    <mat-error *ngIf="editForm.get('imageUrl').hasError('required')">Field is required!</mat-error>
+                    <img src="{{property.imageUrl}}" alt="art-image" />
+                </div>
+                <div>
+                    <label for="price">Price:</label>
+                    <input matInput type="text" placeholder="Price" name="price" value="{{property.price}}$">
+                    <mat-error *ngIf="editForm.get('price').hasError('required')">Field is required!</mat-error>
+                    <mat-error *ngIf="editForm.get('price').hasError('pattern')">Only numbers allowed!</mat-error>
+                </div>
+                <div>
+                    <label for="amentities">Amenities</label>
+                    <section class="example-section" *ngFor="let amenity of propertyAmenities">
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value={{amenity.value}} checked="false">{{amenity.name}}</mat-checkbox>
+                      </section>  
+                </div>
+                <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="formValid(editForm)">Submit</button>  
+            </form>
+        </main> -->
+
+        <div class="text-center">
+            <form name="form" [formGroup]="editForm"  novalidate="null" class="d-flex-center">
+              <div class="example-container">
+                <div>
+                    <mat-form-field>
+                      <input matInput placeholder="Name of the property" formControlName="name" name="name" type="name"  value="{{property.name}}" #name>
+                      <mat-error *ngIf="editForm.get('name').hasError('required')">Field is required!</mat-error>
+                      <mat-error *ngIf="editForm.get('name').hasError('pattern')">Only English letter allowed!</mat-error>
+                      <mat-error *ngIf="editForm.get('name').hasError('maxLength')">Maximum 20 characters allowed!</mat-error>
+                    </mat-form-field>
+                  </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput placeholder="Image" formControlName="imageUrl" name="imageUrl" #imageUrl value="{{property.imageUrl}}">  
+                    <img src="{{property.imageUrl}}" alt="art-image" />
+                    <mat-error *ngIf="editForm.get('imageUrl').hasError('required')">Field is required!</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput placeholder="Description" formControlName="description" name="description" value="{{property.description}}" #description>    
+                    <mat-error *ngIf="editForm.get('description').hasError('required')">Field is required!</mat-error>
+                    <mat-error *ngIf="editForm.get('description').hasError('maxLength')">Maximum 200 characters allowed!</mat-error>
+                  </mat-form-field>
+                </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput placeholder="Price per night/$" formControlName="price" name="price" value="{{property.price}}$">   
+                      <mat-error *ngIf="editForm.get('price').hasError('required')">Field is required!</mat-error>
+                      <mat-error *ngIf="editForm.get('price').hasError('pattern')">Only numbers allowed!</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                      Amenities
+                      <section class="example-section" *ngFor="let amenity of propertyAmenities">
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value={{amenity.value}} [checked]="amenity.flag">{{amenity.name}}</mat-checkbox>
+                      </section>   
+                    </div>
+                <div class="mt-top">
+                  <button mat-raised-button color="primary" type="submit" [disabled]="formValid(editForm)" (click)="onSubmit()" mat-button>Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>

@@ -1,0 +1,27 @@
+.text-center{
+    text-align: center;
+    margin-top: 80px;
+}
+.example-container{
+    height: 60%;
+    width: 30%;
+    text-align: left;
+}
+.d-flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mat-form-field{
+    width: 100%;
+}
+.mt-top{
+    margin-top: 20px;
+}
+.mt-top-2{
+    margin-top: 10px;
+}
+.acc{
+    margin-top: 40px;
+    color: rgb(53, 47, 49)
+}

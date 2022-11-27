@@ -1,0 +1,26 @@
+<div class="text-center">
+  <form [formGroup]="loginForm" novalidate="null" class="d-flex-center">
+    <div class="example-container">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Email" type="email" formControlName="email" name="email" #email>
+          <mat-error *ngIf="loginForm.get('email').hasError('required')">Field is required!</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('pattern')">Invalid email!</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="mt-top-2">
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" type="password" formControlName="password" name="password" #password>    
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">Field is required!</mat-error>
+            <mat-error *ngIf="loginForm.get('password').hasError('pattern')">Password must be a combination of lower-case, upper-case, numbers and at least 9 characters long</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="mt-top">
+        <button mat-raised-button color="primary" [disabled]="formValid(loginForm)" (click)="authservice.login(email.value, password.value)" mat-button >Sign In</button>
+      </div>
+      <div class="acc">
+        <p>You don't have an account? <a routerLinkActive="active" [routerLink]="['/register']">Sign Up</a></p>
+      </div>
+    </div>
+  </form>
+</div>

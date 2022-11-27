@@ -1,0 +1,51 @@
+
+<div class="text-center">
+      <form name="form" [formGroup]="listPropertyForm"  novalidate="null" class="d-flex-center">
+        <div class="example-container">
+          <div>
+              <mat-form-field>
+                <input matInput placeholder="Name of the property" formControlName="name" name="name" type="name" #name>
+                <mat-error *ngIf="listPropertyForm.get('name').hasError('required')">Field is required!</mat-error>
+                <mat-error *ngIf="listPropertyForm.get('name').hasError('pattern')">Only English letter allowed!</mat-error>
+                <mat-error *ngIf="listPropertyForm.get('name').hasError('maxLength')">Maximum 20 characters allowed!</mat-error>
+              </mat-form-field>
+            </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Image" formControlName="imageUrl" name="imageUrl" #imageUrl>  
+              <mat-error *ngIf="listPropertyForm.get('imageUrl').hasError('required')">Field is required!</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Description" formControlName="description" name="description" #description>    
+              <mat-error *ngIf="listPropertyForm.get('description').hasError('required')">Field is required!</mat-error>
+              <mat-error *ngIf="listPropertyForm.get('description').hasError('maxLength')">Maximum 200 characters allowed!</mat-error>
+            </mat-form-field>
+          </div>
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="Price per night/$" formControlName="price" name="price">   
+                <mat-error *ngIf="listPropertyForm.get('price').hasError('required')">Field is required!</mat-error>
+                <mat-error *ngIf="listPropertyForm.get('price').hasError('pattern')">Only numbers allowed!</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+                Amentities
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Welcome gift">Welcome gift</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Designated Pet Walking/Potty Area">Designated Pet Walking/Potty Area</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Personal trainer">Personal trainer</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="On-Site Pet Services">On-Site Pet Services</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Private room for your dog">Private room for your dog</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Video surveillance">Video surveillance</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Grooming">Grooming</mat-checkbox>
+                      </section>   
+              </div>
+          <div class="mt-top">
+            <button mat-raised-button color="primary" type="submit" [disabled]="formValid(listPropertyForm)" (click)="onSubmit()" mat-button>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  

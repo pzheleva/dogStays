@@ -1,0 +1,30 @@
+body{
+    background-image: url("https://media.istockphoto.com/id/1210546651/photo/active-and-agile-dog-jumping-high-on-solid-color-purple-background.jpg?s=612x612&w=0&k=20&c=aoQ9diR3sumGmbc0bF8T1NB_I-5b3F3JXLLzXHgAXh4=");
+}
+.text-center{
+    text-align: center;
+    margin-top: 70px;
+}
+.example-container{
+    height: 60%;
+    width: 30%;
+    text-align: left;
+}
+.d-flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mat-form-field{
+    width: 100%;
+}
+.mt-top{
+    margin-top: 50px;
+}
+.mt-top-2{
+    margin-top: 10px;
+}
+.acc{
+    margin-top: 40px;
+    color: rgb(53, 47, 49)
+}

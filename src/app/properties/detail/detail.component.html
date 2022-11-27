@@ -1,0 +1,46 @@
+
+<div class="container home some">
+    <h2 class="display-5 title">{{propertyModel.name}}</h2>
+    <img class="det-img" src="{{propertyModel.imageURL}}" />
+        <p class="idea-description">Description: {{propertyModel.description}}</p>
+        <p class="idea-description">Amenities: {{amenities}}</p>
+        <p class="idea-description">Price: {{propertyModel.price}}$</p>
+        <p class="idea-description">Likes: {{propertyModel.likes}}</p>
+    <hr class="line">
+    <div>
+
+        <ng-container>
+            <div class="text-center m-0 " *ngIf="isOwner(propertyModel.creatorId)">
+                <a class="btn bg-info col-2" routerLink="/properties/details/{{id}}/edit" mat-raised-button color="primary">Edit</a>
+                <a class="btn bg-danger col-2" (click)="deleteProperty()" mat-raised-button color="primary">Delete</a>
+            </div>
+            <div  *ngIf="!isOwner(propertyModel.creatorId)">
+                <a class="btn bg-info col-2" mat-raised-button color="primary" (click)="likeProperty(propertyModel)">Like this property</a>
+            </div>
+            <form class="text-center" [formGroup]="bookForm" *ngIf="!isOwner(propertyModel.creatorId)">
+                <h2 class="display-5 title">Reserver a place for  your dog and we will contact you:</h2>
+                <div>
+                    <mat-form-field>
+                      <input matInput placeholder="Dog's name" formControlName="dogName" name="dogName" #dogName>
+                      <mat-error *ngIf="bookForm.get('dogName').hasError('pattern')">Only English letters allowed!</mat-error>
+                    </mat-form-field>
+                </div>
+               
+                    <div>
+                        <mat-form-field>
+                          <input matInput placeholder="Phone number" formControlName="phone" name="phone" #phone>
+                          <mat-error *ngIf="bookForm.get('phone').hasError('pattern')">Only numbers allowed!</mat-error>
+                        </mat-form-field>
+                 </div>
+                 <div>
+                    <textarea class="textarea-det" name="requirements" formControlName="requirements" rows="2"
+                    placeholder="Special requirements and period for reservation" name="requirements" #requirements></textarea>
+                    <mat-error *ngIf="bookForm.get('requirements').hasError('maxLength')">Maximum 200 characters allowed!</mat-error>
+                </div>
+                <div>
+                    <button type="submit" class="btn detb" (click)="addReservation(propertyModel)">Submit</button>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
