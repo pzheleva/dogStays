@@ -16,10 +16,9 @@ import { onAuthStateChanged, updateCurrentUser } from 'firebase/auth';
 
 
 
-
   @Injectable({ providedIn: 'root'})
   export class AuthService {
-    data: any
+   
     
 
 
@@ -29,22 +28,7 @@ import { onAuthStateChanged, updateCurrentUser } from 'firebase/auth';
       public router: Router,
       public ngZone: NgZone,
       private toastrs: ToastrService
-    ) {
-      this.angularAuth.authState.subscribe((user) => {
-        if(user){
-          this.data = user;
-
-          
-          if(user["_delegate"]["emailVerified"] === true){
-          localStorage.setItem('user', JSON.stringify(this.data));
-          JSON.parse(localStorage.getItem('user'));
-          }
-        }else{
-          localStorage.setItem('user', null);
-          JSON.parse(localStorage.getItem('user'));
-        }
-      });
-    }
+    ) {}
 
     register(email: string, password: string, displayName: string) {
       return this.angularAuth
@@ -57,6 +41,7 @@ import { onAuthStateChanged, updateCurrentUser } from 'firebase/auth';
             displayName: displayName
           })
           this.SetUserData(result.user);
+         
 
           if(result.user && result.user.emailVerified === false){
             this.SendVerificationMail();
@@ -78,13 +63,10 @@ import { onAuthStateChanged, updateCurrentUser } from 'firebase/auth';
           this.toastrs.info("Email still not verified!")
         }else{
           this.SetUserData(result.user);
-          
-        this.angularAuth.authState.subscribe((user) => {
-          if(user) {
-           
-            this.router.navigate(['home'])
-          }
-        })
+          localStorage.setItem('user', JSON.stringify(result.user)),
+          JSON.parse(localStorage.getItem('user'));
+          this.router.navigate(['properties'])
+      
       }
       }).catch((error) => {
         console.log(error)

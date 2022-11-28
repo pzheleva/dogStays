@@ -17,6 +17,7 @@ import { Like } from "src/models/Like.model";
     PropertyCollection: CollectionReference;
     ReservationCollection: CollectionReference;
     LikesCollection: CollectionReference;
+    likesArray: any[] = [];
 
     constructor(
         public firestore: AngularFirestore,
@@ -83,17 +84,19 @@ import { Like } from "src/models/Like.model";
         return this.PropertyCollection.doc(propertyId).set(property);
     };
 
-    likeProperty(propertyId: string, property: Property){
+    async likeProperty(propertyId: string, property: Property){
         let like: Like = {
          UserId: this.authService.getId,
          PropertyId: propertyId
-        }
+        };
 
-        this.isPropertyLikes(propertyId).then((data) => {
-            console.log(this.LikesCollection)
-            let array = data.docs.filter(u => u.data()["UserId"] === this.authService.getId);
-            if(array.length > 0){
-                this.toastr.error('You already like this property!');
+        (await this.LikesCollection.get()).forEach((element) => {
+            if(element.data()['UserId'] === this.authService.getId){
+                this.likesArray.push(element.data());
+            }
+        });
+            if(this.likesArray.length > 0){
+                this.toastr.error('You\'ve already liked this property!');
                 return;
             }
             property.likes += 1;
@@ -101,19 +104,17 @@ import { Like } from "src/models/Like.model";
             this.addLike(like).then(() => {this.toastr.success('You liked this property!')}).catch((err) => {
                 console.log(err)
             })
-            this.editProperty(property, propertyId)
-        })
+            this.editProperty(property, propertyId);
+            this.likesArray = [];
+        }
 
-      
-       };
+
 
     addLike(like: Like){
         let id = uuidv4();
         return this.LikesCollection.doc(id).set(like);
     }
 
-    isPropertyLikes(propertyId: string){
-        return this.LikesCollection.where('propertyId', '==', propertyId).get();
-    }
+
 
   }

@@ -1,5 +1,5 @@
 <div class="text-center">
-  <form [formGroup]="loginForm" novalidate="null" class="d-flex-center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate="null" class="d-flex-center">
     <div class="example-container">
       <div>
         <mat-form-field>
@@ -16,10 +16,10 @@
         </mat-form-field>
       </div>
       <div class="mt-top">
-        <button  mat-raised-button color="primary" [disabled]="formValid(loginForm)" (click)="authservice.login(email.value, password.value)" mat-button >Sign In</button>
+        <button  mat-raised-button color="primary" [disabled]="formValid(loginForm)" mat-button >Sign In</button>
       </div>
       <div class="acc">
-        <p>You don't have an account? <a routerLinkActive="active" [routerLink]="['/register']">Sign Up</a></p>
+        <p>You don't have an account? <a routerLinkActive="active" [routerLink]="['/register']" type="">Sign Up</a></p>
       </div>
     </div>
   </form>

@@ -1,7 +1,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm, Validators, FormControl, FormGroup, NgModel } from '@angular/forms';
-import { Router, Route } from '@angular/router';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/authService.service';
 
 @Component({
@@ -10,9 +10,15 @@ import { AuthService } from '../services/authService.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+ 
+
   @Input() formGroup?: FormGroup;
+  
   constructor(
-    public authservice: AuthService
+    public authservice: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
    }
 
@@ -25,6 +31,7 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
+  
   }
 
 
@@ -34,6 +41,10 @@ export class LoginComponent implements OnInit {
     }else{
       return true;
     }
+  }
+
+  onSubmit(){
+    this.authservice.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../services/authService.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class VerifyEmailComponent implements OnInit {
   constructor( public authservice: AuthService) { }
 
   ngOnInit(): void {
-  
   }
+
+  
 
 }
