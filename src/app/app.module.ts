@@ -38,7 +38,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { EditComponent } from './properties/detail/edit/edit.component';
-import { NgxSpinnerModule } from "ngx-spinner"
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ProfileComponent } from './profile/profile.component'
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchComponent } from './search/search.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -53,7 +57,10 @@ import { NgxSpinnerModule } from "ngx-spinner"
     ListPropertyComponent,
     PropertiesComponent,
     DetailComponent,
-    EditComponent
+    EditComponent,
+    ProfileComponent,
+    SearchComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,8 @@ import { NgxSpinnerModule } from "ngx-spinner"
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    Ng2SearchPipeModule
   ],
   providers: [
   {

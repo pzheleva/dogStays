@@ -31,7 +31,14 @@
               </mat-form-field>
             </div>
             <div>
-                Amentities
+              <mat-form-field>
+                <input matInput placeholder="Address" formControlName="address" name="address">   
+                <mat-error *ngIf="listPropertyForm.get('address').hasError('required')">Field is required!</mat-error>
+                <mat-error *ngIf="listPropertyForm.get('address').hasError('maxlength')">Maximum 30 characters allowed!</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+                Amenities
                     <section class="example-section">
                         <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Welcome gift">Welcome gift</mat-checkbox>
                         <mat-checkbox class="example-margin" (change)="checkCheckBoxvalue($event)" value="Designated Pet Walking/Potty Area">Designated Pet Walking/Potty Area</mat-checkbox>

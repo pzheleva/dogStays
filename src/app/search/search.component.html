@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <div class="form-group">
+        <mat-form-field>
+      <input matInput
+        type="text"
+        class="form-control"
+        placeholder="Search by city or name"
+        [(ngModel)]="filterTerm"
+      />
+    </mat-form-field>
+    </div>
+    
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let property of this.records | filter: filterTerm">
+          <td>{{ property.name }}</td>
+          <td>{{ property.price }}</td>
+          <td>{{ property.address }}</td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -18,6 +18,9 @@ import { Like } from "src/models/Like.model";
     ReservationCollection: CollectionReference;
     LikesCollection: CollectionReference;
     likesArray: any[] = [];
+    reservationsArray: any[] = [];
+    listedProperties: any[] = [];
+    propertiesForSearch: any[] = [];
 
     constructor(
         public firestore: AngularFirestore,
@@ -30,7 +33,7 @@ import { Like } from "src/models/Like.model";
     this.LikesCollection = this.firestore.collection<Like>('likes').ref;
     }
 
-    addProperty(name: string, imageUrl: string, description: string, price: string, amenities: string[]){
+    addProperty(name: string, imageUrl: string, description: string, price: string, amenities: string[], address: string){
         let property: Property = {
           creatorId: this.authService.getId,
           name: name,
@@ -38,7 +41,8 @@ import { Like } from "src/models/Like.model";
           description: description,
           price: price,
           amenities: amenities ,
-          likes: 0
+          likes: 0,
+          address: address
         }
         let id = uuidv4();
      return this.PropertyCollection.doc(id).set(property);
@@ -113,6 +117,36 @@ import { Like } from "src/models/Like.model";
     addLike(like: Like){
         let id = uuidv4();
         return this.LikesCollection.doc(id).set(like);
+    };
+
+
+    async reservationsOfUser(){
+        this.reservationsArray = [];
+        (await this.ReservationCollection.get()).forEach((r) => {
+            if(r.data()['UserId'] === this.authService.getId){
+                this.reservationsArray.push(r.data());
+            }
+        })
+        return this.reservationsArray;
+    };
+
+    async listedPropertiesOfUser(){
+        this.listedProperties = [];
+        (await this.PropertyCollection.get()).forEach((p) => {
+            if(p.data()['creatorId'] === this.authService.getId){
+                this.listedProperties.push(p.data());
+            }
+        })
+        return this.listedProperties;
+    };
+
+    async getPropertiesSearch(){
+        this.propertiesForSearch = [];
+        (await this.PropertyCollection.get()).forEach((p) => {
+            this.propertiesForSearch.push(p.data());
+        
+        });
+        return this.propertiesForSearch;
     }
 
 

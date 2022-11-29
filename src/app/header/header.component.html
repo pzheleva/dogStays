@@ -3,9 +3,9 @@
 ">
   <a mat-button><mat-icon class="material-icons" routerLink="/home">home</mat-icon></a>
   <span class="example-spacer"></span>
-  <a mat-button><i class="material-icons">search</i></a>
+  <a mat-button><i routerLink="/search" class="material-icons">search</i></a>
   <a routerLink="/properties" mat-button>Properties</a>
-  <a *ngIf="authservice.userLogged" mat-button>Profile</a>
+  <a *ngIf="authservice.userLogged" routerLink="/profile" mat-button>Profile</a>
   <a *ngIf="authservice.userLogged" routerLink="/list-property" mat-button>List property</a>
   <a *ngIf="!authservice.userLogged" routerLink="/login" mat-button>Login</a>
   <a *ngIf="!authservice.userLogged" routerLink="/register" mat-button>Register</a>

@@ -9,6 +9,8 @@ import { ListPropertyComponent } from './list-property/list-property.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { DetailComponent } from './properties/detail/detail.component';
 import { EditComponent } from './properties/detail/edit/edit.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path: 'list-property', component: ListPropertyComponent},
   {path: 'properties', component: PropertiesComponent}, 
   {path: 'properties/details/:id', component: DetailComponent },
-  {path: 'properties/details/:id/edit', component: EditComponent }
+  {path: 'properties/details/:id/edit', component: EditComponent },
+  {path: 'profile', component: ProfileComponent },
+  {path: 'search', component: SearchComponent}
 ];
 
 @NgModule({

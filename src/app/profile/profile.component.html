@@ -1,0 +1,52 @@
+
+        <section id="viewhotelDetails">
+            <div class="profile">
+                <h3>User Info:</h3>
+                <div class="flex">
+                    <p>Full Name: </p>
+                    <p>{{fullName}}</p>
+                </div>
+                <div class="flex">
+                    <p>Email: </p>
+                    <p>{{email}}</p>
+                </div>
+                <div class="flex">
+                    
+                    <p>Reservations: </p>
+                    
+                    <div class="flex" *ngFor="let reservation of this.userReservations">
+                        
+                        <span>Dog's name: </span>
+                        <span>{{reservation.dogName}}</span>
+                        
+                        <span>Requirements: </span>
+                        <span>{{reservation.requirements}}</span>
+                    </div>
+                  
+                      <div *ngIf="!this.hasLengthReservation">
+                        <span>No reservations yet.</span>
+                      </div>
+                   
+                </div>
+                <div class="flex">
+                    
+                    <p>Listed Properties </p>
+                    
+                    <div class="flex" *ngFor="let property of this.userProperties">
+                        
+                        <span>Name: </span>
+                        <span>{{property.name}}</span>
+                        
+                        <span>Likes: </span>
+                        <span>{{property.likes}}</span>
+                    </div>
+                  
+                      <div *ngIf="!this.hasLengthProperties">
+                        <span>No properties yet.</span>
+                      </div>
+                   
+                    
+                </div>
+
+            </div>
+    </section>

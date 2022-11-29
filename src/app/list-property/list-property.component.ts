@@ -17,6 +17,7 @@ export class ListPropertyComponent implements OnInit {
     imageUrl: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     price: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+    address: new FormControl('', [Validators.required, Validators.maxLength(30)])
     });
 
   @Input() formGroup?: FormGroup;
@@ -36,7 +37,8 @@ export class ListPropertyComponent implements OnInit {
   }
 
   formValid(listPropertyForm){
-    if(listPropertyForm.get('name').valid && listPropertyForm.get('imageUrl').valid && listPropertyForm.get('description').valid && listPropertyForm.get('price').valid){
+    if(listPropertyForm.get('name').valid && listPropertyForm.get('imageUrl').valid && listPropertyForm.get('description').valid && listPropertyForm.get('price').valid
+    && listPropertyForm.get('address').valid){
       return false;
     }else{
       return true;
@@ -45,7 +47,7 @@ export class ListPropertyComponent implements OnInit {
 
   onSubmit(){
     this.dataService.addProperty(this.listPropertyForm.get('name').value, this.listPropertyForm.get('imageUrl').value,
-     this.listPropertyForm.get('description').value, this.listPropertyForm.get('price').value, this.amentitiesArray)
+     this.listPropertyForm.get('description').value, this.listPropertyForm.get('price').value, this.amentitiesArray, this.listPropertyForm.get('address').value)
      .then((data) => {
       this.toastr.success('Success')
       this.router.navigate(['properties'])
