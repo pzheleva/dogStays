@@ -11,19 +11,20 @@ import { DetailComponent } from './properties/detail/detail.component';
 import { EditComponent } from './properties/detail/edit/edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { loggedInGuard } from './guards/loggedInGuards.guard';
 
 
 const routes: Routes = [
   {path: '', redirectTo:'/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent },
-  {path: 'verify-email', component: VerifyEmailComponent },
-  {path: 'list-property', component: ListPropertyComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [loggedInGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [loggedInGuard]},
+  {path: 'verify-email', component: VerifyEmailComponent},
+  {path: 'list-property', component: ListPropertyComponent, canActivate: [AuthGuard]},
   {path: 'properties', component: PropertiesComponent}, 
-  {path: 'properties/details/:id', component: DetailComponent },
-  {path: 'properties/details/:id/edit', component: EditComponent },
-  {path: 'profile', component: ProfileComponent },
+  {path: 'properties/details/:id', component: DetailComponent, canActivate: [AuthGuard] },
+  {path: 'properties/details/:id/edit', component: EditComponent, canActivate: [AuthGuard] },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path: 'search', component: SearchComponent}
 ];
 
