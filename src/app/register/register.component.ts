@@ -3,6 +3,7 @@ import { NgForm, Validators, FormControl, FormGroup, NgModel, ValidatorFn, Abstr
 import { Router, Route } from '@angular/router';
 import { AuthService } from '../services/authService.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -20,11 +21,12 @@ export class RegisterComponent implements OnInit {
   rePassword: new FormControl('', Validators.required)
   }, {validators: rePasswordValidator});
 
-  error: string = null;
+  isLoading: boolean = false;
 
   @Input() formGroup?: FormGroup;
   constructor(
-    public authservice: AuthService
+    public authservice: AuthService,
+    private spinner: NgxSpinnerService
   ) { }
 
 
@@ -38,6 +40,11 @@ formValid(registerForm){
   }else{
     return true;
   }
+}
+
+onSubmit(){
+  this.isLoading = true;
+  this.authservice.register(this.registerForm.controls.email.value, this.registerForm.controls.password.value, this.registerForm.controls.displayName.value)
 }
 }
 

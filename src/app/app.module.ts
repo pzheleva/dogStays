@@ -13,11 +13,9 @@ import { MatFormFieldModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorInterceptor } from './interceptors/errors.interceptors';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {ToastrModule} from "ngx-toastr"
 import { CookieService } from 'ngx-cookie-service';
-import { HeadersInterceptor } from "./interceptors/headers.interceptor"
 import { environment } from './environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule, SETTINGS } from '@angular/fire/compat/auth';
@@ -43,6 +41,8 @@ import { ProfileComponent } from './profile/profile.component'
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchComponent } from './search/search.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -60,7 +60,9 @@ import { FooterComponent } from './footer/footer.component';
     EditComponent,
     ProfileComponent,
     SearchComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -86,21 +88,13 @@ import { FooterComponent } from './footer/footer.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({type: 'ball-scale-multiple'}),
     Ng2SearchPipeModule
   ],
   providers: [
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HeadersInterceptor,
-    multi: true
-  },
   CookieService,
   AuthService,
-  {
-  provide: USE_FIRESTORE_SETTINGS,
-  useValue: { experimentalForceLongPolling: true }
-}],
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

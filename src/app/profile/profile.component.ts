@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../services/dataService.service';
 
 @Component({
@@ -14,16 +15,18 @@ export class ProfileComponent implements OnInit {
   userProperties: any;
   hasLengthProperties: boolean;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.toastr.info('Loading profile...');
     this.email = JSON.parse(localStorage.getItem('user')).email;
     this.fullName = JSON.parse(localStorage.getItem('user'))['displayName'];
     this.dataService.reservationsOfUser().then((data) => {
       this.userReservations = data;
+      this.toastr.success('Profile loaded!');
     })
 
-    if(this.userReservations.length === 0){
+    if(this.userReservations === undefined){
       this.hasLengthReservation = false;
     }else{
       this.hasLengthReservation = true;
@@ -33,7 +36,7 @@ export class ProfileComponent implements OnInit {
       this.userProperties = data;
     });
 
-    if(this.userProperties.length === 0){
+    if(this.userProperties === undefined){
       this.hasLengthProperties = false;
     }else{
       this.hasLengthProperties = true;

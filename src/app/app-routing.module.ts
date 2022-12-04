@@ -12,6 +12,8 @@ import { EditComponent } from './properties/detail/edit/edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 import { loggedInGuard } from './guards/loggedInGuards.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path: 'properties/details/:id', component: DetailComponent, canActivate: [AuthGuard] },
   {path: 'properties/details/:id/edit', component: EditComponent, canActivate: [AuthGuard] },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  {path: 'search', component: SearchComponent}
+  {path: 'search', component: SearchComponent},
+  {path: "about", component: AboutComponent},
+  {path: "**", component: NotFoundComponent}
 ];
 
 @NgModule({

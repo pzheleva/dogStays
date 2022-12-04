@@ -3,4 +3,4 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import 'ngx-toastr/toastr';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(163, 138, 187);}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(255, 255, 255);}

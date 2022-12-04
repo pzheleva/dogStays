@@ -51,6 +51,7 @@
               </div>
           <div class="mt-top">
             <button mat-raised-button color="primary" type="submit" [disabled]="formValid(listPropertyForm)" (click)="onSubmit()" mat-button>Submit</button>
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
           </div>
         </div>
       </form>

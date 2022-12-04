@@ -4,14 +4,14 @@
             <section id="gallery">
                 <h1>Properties</h1>
                 <article class="gallery-container">
-
-                    <article class="card-info" *ngFor="let el of this.properties">
+                  <mat-spinner *ngIf="isLoading"></mat-spinner>
+                    <article class="card-info" *ngFor="let el of this.properties" [ngSwitch]="animation" [@enter2]>
                         <article class="card-info-image">
                           <img src="{{el.data().imageUrl}}" alt="art-image" />
                         </article>
                         <article class="card-info-text">
                           <h2>{{el.data().name}}</h2>
-                          <a routerLink="/properties/details/{{el.id}}" class="details-btn">Details</a>
+                          <button type="submit" routerLink="/properties/details/{{el.id}}" class="mat-button mat-raised-button mat-primary" color="primary">Details</button>
                         </article>
                       </article>
                   
@@ -26,3 +26,4 @@
             </section>
 
         </main>
+        

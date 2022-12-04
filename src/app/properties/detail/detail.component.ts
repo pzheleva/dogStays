@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Reservation } from 'src/models/reservation.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class DetailComponent implements OnInit {
   isNotValidLength: boolean;
   amenities: string;
   id: string
+ 
 
   bookForm = new FormGroup({
     dogName: new FormControl('',[Validators.pattern(/^[A-Za-z]+/)]),
@@ -32,25 +34,28 @@ export class DetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private dataService: DataService,
     private authService: AuthService,
-    private toastr: ToastrService,
-    private formBuilder: FormBuilder) { }
+    private spinner: NgxSpinnerService,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) { }
 
 
-  ngOnInit(): void {
+  ngOnInit (): void {
+    this.toastr.info('Loading details...');
     this.dataService.getPropertyById(this.route.snapshot.params['id'])
     .then((data) => {if(data.data() === undefined){
-
       this.found = false;
       return;
     }
 
+    
+
     this.editLink = '/properties/details/' + this.route.snapshot.params['id'] + '/edit';
     this.id = this.route.snapshot.params['id'];
     this.propertyModel = data.data();
-    console.log(`This is the name: ${this.propertyModel.name}`)
+  
     let description = data.data()['description'];
-    this.amenities = data.data()['amenities'].join(', ')
-
+    this.amenities = data.data()['amenities'].join(', ');
+    this.toastr.success('Details loaded!');
     })
 
    
@@ -69,6 +74,7 @@ export class DetailComponent implements OnInit {
 
   deleteProperty(){
     this.dataService.removeProperty(this.route.snapshot.params['id']);
+    this.toastr.success('Property deleted!')
   };
 
   isOwner(userId):boolean {

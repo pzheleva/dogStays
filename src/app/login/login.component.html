@@ -17,6 +17,8 @@
       </div>
       <div class="mt-top">
         <button  mat-raised-button color="primary" [disabled]="formValid(loginForm)" mat-button >Sign In</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+    
       </div>
       <div class="acc">
         <p>You don't have an account? <a routerLinkActive="active" [routerLink]="['/register']" type="">Sign Up</a></p>

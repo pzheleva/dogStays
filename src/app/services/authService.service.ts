@@ -20,7 +20,7 @@ import { onAuthStateChanged, updateCurrentUser } from 'firebase/auth';
   export class AuthService {
    
     
-
+    
 
     constructor(
       public angularfs: AngularFirestore,

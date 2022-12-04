@@ -4,6 +4,8 @@ import { Data } from '@angular/router';
 import { DataService } from '../services/dataService.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-list-property',
@@ -11,6 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-property.component.css']
 })
 export class ListPropertyComponent implements OnInit {
+
+
 
   listPropertyForm = new FormGroup({
     name: new FormControl('', [Validators.pattern(/^[A-Za-z]+/), Validators.required, Validators.maxLength(20)]),
@@ -21,8 +25,9 @@ export class ListPropertyComponent implements OnInit {
     });
 
   @Input() formGroup?: FormGroup;
-  constructor( private dataService: DataService, private toastr: ToastrService, private router: Router) { }
+  constructor( private dataService: DataService, private toastr: ToastrService, private router: Router, private spinner: NgxSpinnerService) { }
   amentitiesArray: string[] = [];
+  isLoading: boolean = false;
   ngOnInit(): void {
 
   }
@@ -46,6 +51,7 @@ export class ListPropertyComponent implements OnInit {
   }
 
   onSubmit(){
+    this.isLoading = true;
     this.dataService.addProperty(this.listPropertyForm.get('name').value, this.listPropertyForm.get('imageUrl').value,
      this.listPropertyForm.get('description').value, this.listPropertyForm.get('price').value, this.amentitiesArray, this.listPropertyForm.get('address').value)
      .then((data) => {
