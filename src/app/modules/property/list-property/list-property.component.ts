@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./list-property.component.css']
 })
 export class ListPropertyComponent implements OnInit {
-
+errors: string;
 
 
   listPropertyForm = new FormGroup({
@@ -28,9 +28,7 @@ export class ListPropertyComponent implements OnInit {
   constructor( private dataService: DataService, private toastr: ToastrService, private router: Router, private spinner: NgxSpinnerService) { }
   amentitiesArray: string[] = [];
   isLoading: boolean = false;
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   checkCheckBoxvalue(event){
    
     if(event.checked){
@@ -61,7 +59,24 @@ export class ListPropertyComponent implements OnInit {
       this.toastr.error(err.message)
       console.log(err.message)
     })
-  }
+  };
+
+  nameExists() {
+    this.dataService.getPropertiesSearch().then((data) => {
+      data.forEach(p => {
+        if(p.name.toLowerCase() === (this.listPropertyForm.get('name').value).toLowerCase()){
+          this.errors = "Name exists!"
+          return true;
+        }else{
+          this.errors = undefined;
+          return false;
+        }
+      })
+      
+    });
+  };
+
+  
   }
   
  

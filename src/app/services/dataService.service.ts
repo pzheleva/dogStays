@@ -21,6 +21,7 @@ import { Like } from "src/models/Like.model";
     reservationsArray: any[] = [];
     listedProperties: any[] = [];
     propertiesForSearch: any[] = [];
+ 
 
     constructor(
         public firestore: AngularFirestore,
@@ -148,7 +149,6 @@ import { Like } from "src/models/Like.model";
         });
         return this.propertiesForSearch;
     }
-
 
 
   }

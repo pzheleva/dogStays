@@ -1,18 +1,12 @@
-mat-slider {
-    width: 300px;
-  }
-
-  #gallery {
+#gallery {
     padding-top: 50px;
     padding-bottom: 50px;
     min-height: 220px;
-    box-shadow: 0px 0px 10px 2px rgb(111, 44, 122);
 }
 
 #gallery>h1 {
     font-size: 44px;
     text-align: center;
-    color: white;
     margin-top: -0.9em;
     margin-bottom: 0.5em;
     padding: 5px;
@@ -25,13 +19,11 @@ mat-slider {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 1200px;
-    margin-bottom: 2em;
     left: 8%;
 }
 
 .card-info {
     width: 510px;
-    height: 230px;
     display: flex;
     margin-left: 3.5em;
     background-color: #f5f5f5;
@@ -41,7 +33,6 @@ mat-slider {
 .card-info-image>img {
     width: 300px;
     padding: 6px 6px 6px 6px;
-    height: 230px;
     border-width: 1em;
     border-left-color: violet;
     border-right-color: darkkhaki;
@@ -111,7 +102,11 @@ mat-slider {
     font-size: 25px;
     margin-top: 0.5em;
     padding-bottom: 12px;
-    color: white;
     text-align: center;
     font-family: 'Barlow', sans-serif;
+}
+
+.detailsButton {
+    position: absolute;
+    right: 45px;
 }

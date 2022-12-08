@@ -9,7 +9,7 @@
   margin: 1em;
 }
 .idea-description {
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 .responsive-ideas {
@@ -131,6 +131,10 @@ form > textarea {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+.btn-wrapper {
+  margin-top: 80px;
 }
 
 

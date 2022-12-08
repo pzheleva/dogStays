@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { DataService } from '../services/dataService.service';
+import { DataService } from '../../services/dataService.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
       this.userReservations = data;
       this.toastr.success('Profile loaded!');
     })
-
+    
     if(this.userReservations === undefined){
       this.hasLengthReservation = false;
     }else{
@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     this.dataService.listedPropertiesOfUser().then((data) => {
       this.userProperties = data;
     });
-
+    console.log(this.userProperties)
     if(this.userProperties === undefined){
       this.hasLengthProperties = false;
     }else{

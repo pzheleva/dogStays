@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm, Validators, FormControl, FormGroup, NgModel, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, Route } from '@angular/router';
-import { AuthService } from '../services/authService.service';
+import { AuthService } from '../../../services/authService.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 

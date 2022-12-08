@@ -2,16 +2,15 @@
 
 <div class="container home some">
     <h2 class="display-5 title">{{propertyModel['name']}}</h2>
-    <img class="det-img" src="{{propertyModel.imageURL}}" />
-        <p class="idea-description">Description: {{propertyModel.description}}</p>
-        <p class="idea-description">Amenities: {{amenities}}</p>
-        <p class="idea-description">Price: {{propertyModel.price}}$</p>
-        <p class="idea-description">Likes: {{propertyModel.likes}}</p>
-    <hr class="line">
+    <img class="det-img" src={{propertyModel.imageUrl}} />
+        <p class="idea-description"><b>Description:</b> {{propertyModel.description}}</p>
+        <p class="idea-description"><b>Amenities:</b> {{amenities}}</p>
+        <p class="idea-description"><b>Price:</b> {{propertyModel.price}}$</p>
+        <p class="idea-description"><b>Likes:</b> {{propertyModel.likes}}</p>
     <div>
 
         <ng-container>
-            <div class="text-center m-0 " *ngIf="isOwner(propertyModel.creatorId)">
+            <div class="text-center m-0 btn-wrapper" *ngIf="isOwner(propertyModel.creatorId)">
                 <a class="btn bg-info col-2" routerLink="/properties/details/{{id}}/edit" mat-raised-button color="primary">Edit</a>
                 <a class="btn bg-danger col-2" (click)="deleteProperty()" mat-raised-button color="primary">Delete</a>
             </div>

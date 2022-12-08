@@ -2,7 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm, Validators, FormControl, FormGroup, NgModel } from '@angular/forms';
 import { Router, Route, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../services/authService.service';
+import { AuthService } from '../../services/authService.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

@@ -37,11 +37,11 @@
                         <span>Name: </span>
                         <span>{{property['name']}}</span>
                         
-                        <span>Likes: </span>
+                        <span class="likes">Likes: </span>
                         <span>{{property.likes}}</span>
                     </div>
                   
-                      <div *ngIf="!this.hasLengthProperties">
+                      <div *ngIf="this.hasLengthProperties">
                         <span>No properties yet.</span>
                       </div>
                    

@@ -418,7 +418,7 @@ h3 {
 
 .profile {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: 2em auto 1rem;
     padding: .5em;
     border: .3em solid cornflowerblue;
@@ -486,4 +486,8 @@ h3 {
 
 .green-button {
     background-color: green;
+}
+
+.likes {
+    padding-left: 10px;
 }

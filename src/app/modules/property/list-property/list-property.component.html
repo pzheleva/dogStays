@@ -8,6 +8,7 @@
                 <mat-error *ngIf="listPropertyForm.get('name').hasError('required')">Field is required!</mat-error>
                 <mat-error *ngIf="listPropertyForm.get('name').hasError('pattern')">Only English letter allowed!</mat-error>
                 <mat-error *ngIf="listPropertyForm.get('name').hasError('maxLength')">Maximum 20 characters allowed!</mat-error>
+                <mat-error *ngIf="nameExists">{{errors}}</mat-error>
               </mat-form-field>
             </div>
           <div>

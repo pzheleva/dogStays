@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
 
   editLink: string;
   found: boolean;
-  propertyModel: any;
+  propertyModel: any = {};
   isNotValidLength: boolean;
   amenities: string;
   id: string
@@ -40,6 +40,7 @@ export class DetailComponent implements OnInit {
 
 
   ngOnInit (): void {
+   
     this.toastr.info('Loading details...');
     this.dataService.getPropertyById(this.route.snapshot.params['id'])
     .then((data) => {if(data.data() === undefined){
@@ -52,7 +53,7 @@ export class DetailComponent implements OnInit {
     this.editLink = '/properties/details/' + this.route.snapshot.params['id'] + '/edit';
     this.id = this.route.snapshot.params['id'];
     this.propertyModel = data.data();
-  
+    console.log(this.propertyModel)
     let description = data.data()['description'];
     this.amenities = data.data()['amenities'].join(', ');
     this.toastr.success('Details loaded!');
