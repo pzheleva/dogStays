@@ -66,7 +66,7 @@ export const environment = {
     }
   };
   ```
-  You can check [here](https://firebase.google.com/docs/web/setup) for more information.
+  You can check [here](https://firebase.google.com/docs/web/setup) for more information about the configuration.
   
   5. Then navigate to the app folder and type "ng serve"
   
