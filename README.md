@@ -1,27 +1,74 @@
 # DogStays
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+It was designed to run no Microsoft Edge browser because there were some limitations on my laptop for Google Chrome Browser.
+DogStays is a platform where everyone can offer their properties for dogs or can choose between different properties and book a place for their dog.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Design
 
-## Code scaffolding
+The application has two parts:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Public**
+Users who are not logged in can access the following pages:
 
-## Build
+* Login
+* Register
+* About
+* Search
+* Home
+* Properties
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Private**
+Logged in users can access the following pages:
 
-## Running end-to-end tests
+* Home
+* Properties
+* Details(Owners can edit and delete their publications/ users who are not owners of the property can giva e like and book a place for their dog by filling a form)
+* List property
+* Search
+* Profile
+* About
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+# Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The following packages were used for this project:
+
+* Angular 14
+* Firebase firestore database
+* Angular Material UI Component Library
+
+You should download:
+* [NodeJS](https://nodejs.org/en/)
+* [Angular CLI](https://angular.io/cli)
+* [Angular Material UI Component Library](https://material.angular.io/guide/getting-started)
+
+1. Clone this repository
+2. Navigate to the "app" folder
+3. Run "npm install"
+4. Add environment.ts file to the "app" folder which should contain information about your firabase web configuration:
+
+```
+export const environment = {
+    production: false,
+    firebase: {
+        apiKey: "data",
+        authDomain: "data",
+        databaseURL: "data",
+        projectId: "data",
+        storageBucket: "data",
+        messagingSenderId: "data",
+        appId: "data",
+        measurementId: "data"
+    }
+  };
+  ```
+  You can check [here](https://firebase.google.com/docs/web/setup) for more information about the configuration.
+  
+  5. Then navigate to the app folder and type "ng serve"
+  
+  Now open Microsoft Edge browser and open http://localhost:4200/ and you should be ready.
+  
