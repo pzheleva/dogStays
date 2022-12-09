@@ -1,19 +1,19 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent} from './user/login/login.component';
-import { RegisterComponent } from './user/register/register/register.component';
-import { VerifyEmailComponent } from './user/verify-email/verify-email.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './modules/user/login/login.component'; 
+import { RegisterComponent } from './modules/user/register/register/register.component';
+import { VerifyEmailComponent } from './modules/user/verify-email/verify-email.component';
 import { AuthGuard } from './guards/auth-guard.guard';
-import { ListPropertyComponent } from './list-property/list-property.component';
-import { PropertiesComponent } from './properties/properties.component';
-import { DetailComponent } from './properties/detail/detail.component';
-import { EditComponent } from './properties/detail/edit/edit.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { SearchComponent } from './search/search.component';
+import { ListPropertyComponent } from './modules/property/list-property/list-property.component';
+import { PropertiesComponent } from './modules/property/properties/properties.component';
+import { DetailComponent } from './modules/property/properties/detail/detail.component';
+import { EditComponent } from './modules/property/properties/detail/edit/edit.component';
+import { ProfileComponent } from './modules/user/profile/profile.component';
+import { SearchComponent } from './components/search/search.component';
 import { loggedInGuard } from './guards/loggedInGuards.guard';
-import { NotFoundComponent } from './core/not-found/not-found.component';
-import { AboutComponent } from './core/about/about.component';
+import { NotFoundComponent } from './modules/core/not-found/not-found.component';
+import { AboutComponent } from './modules/core/about/about.component';
 
 
 const routes: Routes = [
