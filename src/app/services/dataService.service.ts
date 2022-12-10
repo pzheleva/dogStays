@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference  } from "@angular/fire/compat/firestore";
-import { Property } from "src/models/property.model";
+import { Property } from "../components/models/property.model";
 import { AuthService } from "./authService.service";
 import { Router } from "@angular/router";
 import { v4 as uuidv4 } from 'uuid';
-import { Reservation } from "src/models/reservation.model";
+import { Reservation } from "../components/models/reservation.model";
 import { ToastrService } from "ngx-toastr";
-import { Like } from "src/models/Like.model";
+import { Like } from "../components/models/Like.model";
 
 
 
@@ -59,14 +59,15 @@ import { Like } from "src/models/Like.model";
         return this.PropertyCollection.doc(id).get();
     };
 
-    bookPlace(propertyId: string, dogName: string, phoneNumber: string, requirements: string){
+    bookPlace(propertyId: string, dogName: string, phoneNumber: string, fromDate: string, toDate: string){
         let reservation: Reservation = {
             UserId: this.authService.getId,
             email: this.authService.getEmail,
             PropertyId: propertyId,
             dogName: dogName,
             phoneNumber: phoneNumber,
-            requirements: requirements
+            fromDate: fromDate,
+            toDate: toDate
         }
 
         let reservationId = uuidv4();
@@ -89,21 +90,22 @@ import { Like } from "src/models/Like.model";
         return this.PropertyCollection.doc(propertyId).set(property);
     };
 
-    async likeProperty(propertyId: string, property: Property){
+    userAlreadyLikes(propertyId) {
+        return this.LikesCollection.where("PropertyId", '==', propertyId).get();
+    }
+
+    likeProperty(propertyId: string, property: Property){
         let like: Like = {
          UserId: this.authService.getId,
          PropertyId: propertyId
         };
 
-        (await this.LikesCollection.get()).forEach((element) => {
-            if(element.data()['UserId'] === this.authService.getId){
-                this.likesArray.push(element.data());
-            }
-        });
-            if(this.likesArray.length > 0){
+        this.userAlreadyLikes(propertyId).then((data) => {
+            let array = data.docs.filter(p => p.data()['UserId'] == this.authService.getId);
+            if(array.length > 0) {
                 this.toastr.error('You\'ve already liked this property!');
                 return;
-            }
+            };
             property.likes += 1;
 
             this.addLike(like).then(() => {this.toastr.success('You liked this property!')}).catch((err) => {
@@ -111,6 +113,9 @@ import { Like } from "src/models/Like.model";
             })
             this.editProperty(property, propertyId);
             this.likesArray = [];
+        });
+
+    
         }
 
 

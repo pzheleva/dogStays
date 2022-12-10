@@ -17,6 +17,7 @@
             <div  *ngIf="!isOwner(propertyModel.creatorId)">
                 <a class="btn bg-info col-2" mat-raised-button color="primary" (click)="likeProperty(propertyModel)">Like this property</a>
             </div>
+            <hr class="line">
             <form class="text-center" [formGroup]="bookForm" *ngIf="!isOwner(propertyModel.creatorId)">
                 <h2 class="display-5 title">Reserver a place for  your dog and we will contact you:</h2>
                 <div>
@@ -33,12 +34,23 @@
                         </mat-form-field>
                  </div>
                  <div>
-                    <textarea class="textarea-det" name="requirements" formControlName="requirements" rows="2"
-                    placeholder="Special requirements and period for reservation" name="requirements" #requirements></textarea>
-                    <mat-error *ngIf="bookForm.get('requirements').hasError('maxLength')">Maximum 200 characters allowed!</mat-error>
+                    From:
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="fromDate" name="fromDate" formControlName="fromDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="fromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #fromDate></mat-datepicker>
+                      </mat-form-field>
+                    To:
+                      <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="toDate" name="toDate" formControlName="toDate">>
+                        <mat-datepicker-toggle matIconSuffix [for]="toDate"></mat-datepicker-toggle>
+                        <mat-datepicker #toDate></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div>
-                    <button type="submit" class="btn detb" (click)="addReservation(propertyModel)">Submit</button>
+                    <button type="submit"  mat-raised-button color="primary" class="btn detb" (click)="addReservation(propertyModel)">Submit</button>
                 </div>
             </form>
         </ng-container>

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { DataService } from 'src/app/services/dataService.service';
-import { Amenities } from 'src/models/Amenities.model';
+import { Amenities } from 'src/app/components/models/Amenities.model';
 import { NgxSpinnerService } from "ngx-spinner"
 
 @Component({

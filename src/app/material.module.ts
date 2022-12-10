@@ -77,8 +77,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatSliderModule
-    
+    MatSliderModule,
+
   ]
 })
 export class MaterialModule {}

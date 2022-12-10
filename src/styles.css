@@ -2,6 +2,8 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import 'ngx-toastr/toastr';
+
+
 html, body { height: 100%; }
 body { 
     margin: 0;

@@ -4,5 +4,6 @@ export class Reservation {
     PropertyId: string;
     dogName: string;
     phoneNumber: string;
-    requirements: string;
+    fromDate: string;
+    toDate: string;
 }

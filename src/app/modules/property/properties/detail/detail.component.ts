@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Property } from 'src/models/property.model';
+import { Property } from 'src/app/components/models/property.model';
 import { AuthService } from 'src/app/services/authService.service';
 import { DataService } from 'src/app/services/dataService.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Reservation } from 'src/models/reservation.model';
+import { Reservation } from 'src/app/components/models/reservation.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {DatePipe} from '@angular/common'
 
 
 @Component({
@@ -27,8 +28,11 @@ export class DetailComponent implements OnInit {
   bookForm = new FormGroup({
     dogName: new FormControl('',[Validators.pattern(/^[A-Za-z]+/)]),
     phone: new FormControl('', [Validators.pattern(/^[0-9]*$/)]),
-    requirements: new FormControl('', [Validators.maxLength(200)]),
+    fromDate: new FormControl(),
+    toDate: new FormControl()
     });
+
+  
 
 
   constructor(private route: ActivatedRoute,
@@ -36,7 +40,8 @@ export class DetailComponent implements OnInit {
     private authService: AuthService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private datePipe: DatePipe) { }
 
 
   ngOnInit (): void {
@@ -60,18 +65,30 @@ export class DetailComponent implements OnInit {
     })
 
    
-    if(this.bookForm.controls.requirements.value.length > 3){
-      this.isNotValidLength = true;
-    }else{
-      this.isNotValidLength = false;
-    }
+    // if(this.bookForm.controls.requirements.value.length > 3){
+    //   this.isNotValidLength = true;
+    // }else{
+    //   this.isNotValidLength = false;
+    // }
     
   }
 
-  addReservation(property: Property){
-    this.dataService.bookPlace(this.route.snapshot.params['id'], this.bookForm.controls.dogName.value, this.bookForm.controls.phone.value, this.bookForm.controls.requirements.value);
+  addReservation(){
+    console.log(this.datePipe.transform(this.bookForm.get("fromDate").value, "yyyy-MM-dd"));
+
+    if(this.bookForm.get("fromDate").value > this.bookForm.get("toDate").value){
+      this.toastr.error('ToDate cannot be before FromDate!');
+      return;
+    };
+
+    this.dataService.bookPlace(this.route.snapshot.params['id'], this.bookForm.controls.dogName.value, this.bookForm.controls.phone.value, this.datePipe.transform(this.bookForm.get("fromDate").value, "yyyy-MM-dd"), this.datePipe.transform(this.bookForm.get("toDate").value, "yyyy-MM-dd"));
     this.bookForm.reset();
-  };
+
+  }
+  // addReservation(property: Property){
+  //   this.dataService.bookPlace(this.route.snapshot.params['id'], this.bookForm.controls.dogName.value, this.bookForm.controls.phone.value, );
+  //   this.bookForm.reset();
+  // };
 
   deleteProperty(){
     this.dataService.removeProperty(this.route.snapshot.params['id']);

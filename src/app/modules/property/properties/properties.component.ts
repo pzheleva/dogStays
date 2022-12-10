@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuerySnapshot } from 'firebase/firestore';
-import { DataService } from '../services/dataService.service';
+import { DataService } from 'src/app/services/dataService.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { bounceInUpOnEnterAnimation, lightSpeedInAnimation } from 'angular-animations';
 

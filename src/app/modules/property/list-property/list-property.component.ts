@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Data } from '@angular/router';
-import { DataService } from '../services/dataService.service';
+import { DataService } from 'src/app/services/dataService.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -65,10 +65,7 @@ errors: string;
     this.dataService.getPropertiesSearch().then((data) => {
       data.forEach(p => {
         if(p.name.toLowerCase() === (this.listPropertyForm.get('name').value).toLowerCase()){
-          this.errors = "Name exists!"
-          return true;
-        }else{
-          this.errors = undefined;
+          this.toastr.error('Name exists!')
           return false;
         }
       })
@@ -76,6 +73,7 @@ errors: string;
     });
   };
 
+ 
   
   }
   

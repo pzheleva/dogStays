@@ -14,13 +14,9 @@
                     
                     <p>Reservations: </p>
                     
-                    <div class="flex" *ngFor="let reservation of this.userReservations">
-                        
-                        <span>Dog's name: </span>
-                        <span>{{reservation.dogName}}</span>
-                        
-                        <span>Requirements: </span>
-                        <span>{{reservation.requirements}}</span>
+                    <div class="flex" *ngIf="this.hasLengthReservation">
+                     
+                        <span>{{this.userReservationsJoined}}</span>
                     </div>
                   
                       <div *ngIf="!this.hasLengthReservation">
@@ -32,16 +28,12 @@
                     
                     <p>Listed Properties </p>
                     
-                    <div class="flex" *ngFor="let property of this.userProperties">
+                    <div class="flex" *ngIf="this.hasLengthProperties">
                         
-                        <span>Name: </span>
-                        <span>{{property['name']}}</span>
-                        
-                        <span class="likes">Likes: </span>
-                        <span>{{property.likes}}</span>
+                        <span>{{this.userPropertiesJoined}}</span>
                     </div>
                   
-                      <div *ngIf="this.hasLengthProperties">
+                      <div *ngIf="!this.hasLengthProperties">
                         <span>No properties yet.</span>
                       </div>
                    
