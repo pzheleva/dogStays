@@ -43,7 +43,8 @@ import { AboutComponent } from './modules/core/about/about.component';
 import { AppComponent } from './app.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 
@@ -84,18 +85,19 @@ import { DatePipe } from '@angular/common'
     provideFirestore(() => getFirestore()),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFirestoreModule,
     AngularFireDatabaseModule,
     MatNativeDateModule,
     MatInputModule,
     NgxSpinnerModule.forRoot({type: 'ball-scale-multiple'}),
     Ng2SearchPipeModule,
     MatDatepickerModule,
+    
   ],
   providers: [
   CookieService,
   AuthService,
-  DatePipe
+  DatePipe,
+  { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
 ],
   bootstrap: [AppComponent]
 })

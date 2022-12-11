@@ -28,6 +28,7 @@ errors: string;
   constructor( private dataService: DataService, private toastr: ToastrService, private router: Router, private spinner: NgxSpinnerService) { }
   amentitiesArray: string[] = [];
   isLoading: boolean = false;
+  existingNames: any = [];
   ngOnInit(): void {}
   checkCheckBoxvalue(event){
    
@@ -48,35 +49,51 @@ errors: string;
     }
   }
 
-  onSubmit(){
-    this.isLoading = true;
-    this.dataService.addProperty(this.listPropertyForm.get('name').value, this.listPropertyForm.get('imageUrl').value,
-     this.listPropertyForm.get('description').value, this.listPropertyForm.get('price').value, this.amentitiesArray, this.listPropertyForm.get('address').value)
-     .then((data) => {
-      this.toastr.success('Success')
-      this.router.navigate(['properties'])
-     }).catch((err) => {
-      this.toastr.error(err.message)
-      console.log(err.message)
-    })
+  async onSubmit(){
+
+    const nameExists = await this.nameExists();
+
+    if(!nameExists){
+      return;
+
+    }
+
+      this.isLoading = true;
+      this.dataService.addProperty(this.listPropertyForm.get('name').value, this.listPropertyForm.get('imageUrl').value,
+       this.listPropertyForm.get('description').value, this.listPropertyForm.get('price').value, this.amentitiesArray, this.listPropertyForm.get('address').value)
+       .then((data) => {
+        this.toastr.success('Success')
+        this.router.navigate(['properties'])
+       }).catch((err) => {
+        this.toastr.error(err.message)
+        console.log(err.message)
+      })
+
+    
+
   };
 
-  nameExists() {
-    this.dataService.getPropertiesSearch().then((data) => {
-      data.forEach(p => {
+  async nameExists() {
+    const test = await this.dataService.getPropertiesSearch();
+    console.log(test);
+
+      test.forEach(p => {
         if(p.name.toLowerCase() === (this.listPropertyForm.get('name').value).toLowerCase()){
-          this.toastr.error('Name exists!')
-          return false;
+          this.existingNames.push(p.name);
         }
       })
       
-    });
-  };
+    
 
- 
-  
+    if(this.existingNames.length > 0){
+      this.existingNames = [];
+      this.toastr.error("Name exists!")
+      return false;
+  }
+
+  return true;
   }
   
- 
+}
   
 
