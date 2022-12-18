@@ -8,14 +8,14 @@
         </div>
         
         <div class="formGroup">
-          <button mat-raised-button color="primary" type="button" class="btn btnPrimary" (click)="authservice.SendVerificationMail()" mat-button>
+          <button mat-raised-button color="primary" id="resend" type="button" class="btn btnPrimary" (click)="authservice.SendVerificationMail()" mat-button>
             <i class="fas fa-redo-alt"></i>
             Resend Verification Email
           </button>
         </div>
       </div>
       <div class="redirectToLogin">
-        <p>Do you want to log in?<a routerLinkActive="active" [routerLink]="['/login']">Log In</a></p>
+        <p>Do you want to log in? <a routerLinkActive="active" [routerLink]="['/login']" class="login">Log In</a></p>
       </div>
     </div>
   </div>

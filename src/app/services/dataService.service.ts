@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Reservation } from "../components/models/reservation.model";
 import { ToastrService } from "ngx-toastr";
 import { Like } from "../components/models/Like.model";
+import { QuerySnapshot } from "firebase/firestore";
 
 
 
@@ -21,6 +22,8 @@ import { Like } from "../components/models/Like.model";
     reservationsArray: any[] = [];
     listedProperties: any[] = [];
     propertiesForSearch: any[] = [];
+    propertiesForSearchWithId: any[] = [];
+
  
 
     constructor(
@@ -153,7 +156,19 @@ import { Like } from "../components/models/Like.model";
         
         });
         return this.propertiesForSearch;
+    };
+
+
+    async getPropertiesSec(){
+        this.propertiesForSearchWithId = [];
+        (await this.PropertyCollection.get()).forEach((p) => {
+            const data = p.data();
+            data["id"] = p.id;
+            this.propertiesForSearchWithId.push(data);
+        });
+
+        return this.propertiesForSearchWithId;
     }
 
-
-  }
+  };
+  

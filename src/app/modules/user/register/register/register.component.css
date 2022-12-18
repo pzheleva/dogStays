@@ -6,6 +6,8 @@
     height: 60%;
     width: 30%;
     text-align: left;
+
+    
 }
 .d-flex-center{
     display: flex;
@@ -24,4 +26,12 @@
 .acc{
     margin-top: 40px;
     color: rgb(53, 47, 49)
+}
+
+.example-container div{
+    margin-bottom: 20px;
+}
+
+.spinner{
+    margin-top: 20px
 }

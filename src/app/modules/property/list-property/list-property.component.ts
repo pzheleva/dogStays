@@ -29,7 +29,8 @@ errors: string;
   amentitiesArray: string[] = [];
   isLoading: boolean = false;
   existingNames: any = [];
-  ngOnInit(): void {}
+  ngOnInit(): void {};
+  
   checkCheckBoxvalue(event){
    
     if(event.checked){

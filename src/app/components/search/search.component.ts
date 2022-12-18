@@ -19,11 +19,12 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.dataService.getPropertiesSearch().then((data) => {
+    this.dataService.getPropertiesSec().then((data) => {
+      console.log(data)
       this.records = data;
-  
+      
     });
-
+   
 
   }
 

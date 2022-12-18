@@ -20,37 +20,39 @@
             <hr class="line">
             <form class="text-center" [formGroup]="bookForm" *ngIf="!isOwner(propertyModel.creatorId)">
                 <h2 class="display-5 title">Reserver a place for  your dog and we will contact you:</h2>
-                <div>
+                <div class="field1">
                     <mat-form-field>
                       <input matInput placeholder="Dog's name" formControlName="dogName" name="dogName" #dogName>
                       <mat-error *ngIf="bookForm.get('dogName').hasError('pattern')">Only English letters allowed!</mat-error>
+                      <mat-error *ngIf="bookForm.get('dogName').hasError('required')">Field is required!</mat-error>
                     </mat-form-field>
                 </div>
                
-                    <div>
+                    <div class="field2">
                         <mat-form-field>
                           <input matInput placeholder="Phone number" formControlName="phone" name="phone" #phone>
                           <mat-error *ngIf="bookForm.get('phone').hasError('pattern')">Only numbers allowed!</mat-error>
+                          <mat-error *ngIf="bookForm.get('phone').hasError('required')">Field is required!</mat-error>
                         </mat-form-field>
                  </div>
-                 <div>
+                 <div class="calendar">
                     From:
                     <mat-form-field appearance="fill">
-                        <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="fromDate" name="fromDate" formControlName="fromDate">
+                        <mat-label>{{today}}</mat-label>
+                        <input matInput [matDatepicker]="fromDate" name="fromDate" formControlName="fromDate" [value]="today">
                         <mat-datepicker-toggle matIconSuffix [for]="fromDate"></mat-datepicker-toggle>
                         <mat-datepicker #fromDate></mat-datepicker>
                       </mat-form-field>
                     To:
                       <mat-form-field appearance="fill">
                         <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="toDate" name="toDate" formControlName="toDate">>
+                        <input matInput [matDatepicker]="toDate" name="toDate" formControlName="toDate">
                         <mat-datepicker-toggle matIconSuffix [for]="toDate"></mat-datepicker-toggle>
                         <mat-datepicker #toDate></mat-datepicker>
                       </mat-form-field>
                 </div>
                 <div>
-                    <button type="submit"  mat-raised-button color="primary" class="btn detb" (click)="addReservation(propertyModel)">Submit</button>
+                    <button type="submit"  mat-raised-button color="primary" class="btn detb" [disabled]="formValid(bookForm)" (click)="addReservation(propertyModel)">Submit</button>
                 </div>
             </form>
         </ng-container>

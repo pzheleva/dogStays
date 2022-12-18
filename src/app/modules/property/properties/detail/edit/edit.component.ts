@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
 
 
 
-  property: any;
+  property: any = {};
   elements: any;
   amenities: any;
   amenitiesArray: string[] = [];

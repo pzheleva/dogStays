@@ -51,11 +51,11 @@
                 <div>
                   <mat-form-field>
                     <input matInput placeholder="Image" formControlName="imageUrl" name="imageUrl" #imageUrl value="{{property.imageUrl}}">  
-                    <img src="{{property.imageUrl}}" alt="art-image" />
                     <mat-error *ngIf="editForm.get('imageUrl').hasError('required')">Field is required!</mat-error>
                   </mat-form-field>
+                  <img src="{{property.imageUrl}}" width="500px" alt="art-image" />
                 </div>
-                <div>
+                <div class="desc">
                   <mat-form-field>
                     <input matInput placeholder="Description" formControlName="description" name="description" value="{{property.description}}" #description>    
                     <mat-error *ngIf="editForm.get('description').hasError('required')">Field is required!</mat-error>
@@ -64,7 +64,7 @@
                 </div>
                   <div>
                     <mat-form-field>
-                      <input matInput placeholder="Price per night/$" formControlName="price" name="price" value="{{property.price}}$">   
+                      <input matInput placeholder="Price per night/$" formControlName="price" name="price" value="{{property.price}}">   
                       <mat-error *ngIf="editForm.get('price').hasError('required')">Field is required!</mat-error>
                       <mat-error *ngIf="editForm.get('price').hasError('pattern')">Only numbers allowed!</mat-error>
                     </mat-form-field>

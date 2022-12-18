@@ -26,3 +26,12 @@
     margin-top: 40px;
     color: rgb(53, 47, 49)
 }
+
+.example-container div{
+    margin-bottom: 20px;
+}
+
+
+.spinner{
+    margin-top: 20px
+}
